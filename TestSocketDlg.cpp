@@ -38,6 +38,7 @@ DWORD			gm_dwRecvNum=0;
 
 union data
 {
+	int				pIntbuf[40000];
 	short			pbuf[80000];
 	char			pchbuf[160000];
 } gm_data;
@@ -310,7 +311,7 @@ BOOL CTestSocketDlg::OnInitDialog()
 
 	m_nPackTimes=m_nSFrequency/10;
 
-	m_nPackSize=m_nRouteNum*20+8;
+	m_nPackSize= sizeof(int) *(m_nRouteNum*10+4);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -382,21 +383,21 @@ void CTestSocketDlg::OnTimer(UINT nIDEvent)
 
 	for(m_i=0;m_i<(m_nPackTimes/100);m_i++)
 	{
-		m_nSA=(m_i*m_nPackSize)/2;
-
-		gm_data.pbuf[m_nSA]=0x8fff;
-		gm_data.pbuf[m_nSA+1]=m_iDNo/65536;
-		gm_data.pbuf[m_nSA+2]=m_iDNo%65536;
+		m_nSA=(m_i*m_nPackSize)/4;
+		gm_data.pIntbuf[m_nSA] = 0;
+		gm_data.pIntbuf[m_nSA+1]=0x8fffffff;
+		gm_data.pIntbuf[m_nSA+2]=m_iDNo/65536;
+		gm_data.pIntbuf[m_nSA+3]=m_iDNo%65536;
 
 		for(m_ii=0;m_ii<10;m_ii++)
 		{
 			for(m_j=0;m_j<m_nRouteNum;m_j++)
 			{
-				gm_data.pbuf[m_nSA+3+m_ii*m_nRouteNum+m_j]=3000*sin((m_iDNo*m_nPackTimes+m_i*10+m_ii)*m_dCoeff*3.1415926);
+				gm_data.pIntbuf[m_nSA+4+m_ii*m_nRouteNum+m_j]=3000*sin((m_iDNo*m_nPackTimes+m_i*10+m_ii)*m_dCoeff*3.1415926);
 			}
 		}
 
-		gm_data.pbuf[m_nSA+3+m_nRouteNum*10]=0x0000;
+		gm_data.pIntbuf[m_nSA+4+m_nRouteNum*10]=0x0000;
 		
 	}
 
@@ -449,6 +450,7 @@ void CTestSocketDlg::NetParseData()
 			{
 				SendStateInfo();	
 				NetMoveData(m_nLen);
+				OnAutosend();
 			}
 			else if(gm_pData[gm_nCurPos+1]==0x0f)
 			{
