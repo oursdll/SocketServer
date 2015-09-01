@@ -403,15 +403,15 @@ void CTestSocketDlg::OnTimer(UINT nIDEvent)
 
 	m_iDNo=m_iDNo+1;
 
-	m_strSendNum.Format("%d",m_iDNo);
-	m_CtrSendNum.SetWindowText(m_strSendNum);
-	_tcscpy(&gm_data.pchbuf[4], gm_data.pchbuf);	
-	gm_data.pchbuf[0] = m_SendpacketNum;
-	gm_data.pchbuf[1] = m_SendpacketNum >> 8;
-	gm_data.pchbuf[2] = m_SendpacketNum >> 16;
-	gm_data.pchbuf[3] = m_SendpacketNum >> 24;
+	//m_strSendNum.Format("%d",m_iDNo);
+	//m_CtrSendNum.SetWindowText(m_strSendNum);
+	//_tcscpy(&gm_data.pchbuf[4], gm_data.pchbuf);	
+	//gm_data.pchbuf[0] = m_SendpacketNum;
+	//gm_data.pchbuf[1] = m_SendpacketNum >> 8;
+	//gm_data.pchbuf[2] = m_SendpacketNum >> 16;
+	//gm_data.pchbuf[3] = m_SendpacketNum >> 24;
 
-	if(!send(gm_socketClient,&gm_data.pchbuf[0],(m_nPackSize*m_nPackTimes)/100+4,0)==SOCKET_ERROR)
+	if(!send(gm_socketClient,&gm_data.pchbuf[0],(m_nPackSize*m_nPackTimes)/100+8,0)==SOCKET_ERROR)
 	{
 		AfxMessageBox("Send failed!");
 	}
