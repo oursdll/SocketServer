@@ -393,7 +393,7 @@ void CTestSocketDlg::OnTimer(UINT nIDEvent)
 		{
 			for(m_j=0;m_j<m_nRouteNum;m_j++)
 			{
-				gm_data.pIntbuf[m_nSA + 4 + m_ii*m_nRouteNum + m_j] = 8;/*3000*sin((m_iDNo*m_nPackTimes+m_i*10+m_ii)*m_dCoeff*3.1415926);*/
+				gm_data.pIntbuf[m_nSA+4+m_ii*m_nRouteNum+m_j]=3000*sin((m_iDNo*m_nPackTimes+m_i*10+m_ii)*m_dCoeff*3.1415926);
 			}
 		}
 
