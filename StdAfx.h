@@ -1,7 +1,7 @@
 // stdafx.h : include file for standard system include files,
 //  or project specific include files that are used frequently, but
 //      are changed infrequently
-//
+//4324234
 
 #if !defined(AFX_STDAFX_H__25F7CB82_32FE_401A_B0D5_B53C2EE03C96__INCLUDED_)
 #define AFX_STDAFX_H__25F7CB82_32FE_401A_B0D5_B53C2EE03C96__INCLUDED_
