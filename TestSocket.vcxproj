@@ -140,6 +140,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="test.cpp" />
     <ClCompile Include="TestSocket.cpp" />
     <ClCompile Include="TestSocketDlg.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Resource.h" />
     <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="TestSocket.h" />
     <ClInclude Include="TestSocketDlg.h" />
   </ItemGroup>
